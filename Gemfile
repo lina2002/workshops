@@ -19,6 +19,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'travis'
 gem 'ffaker'
 gem 'konf'
+gem 'tzinfo-data'
 
 group :development do
   gem 'spring'
@@ -35,4 +36,4 @@ group :test do
   gem 'database_cleaner'
 end
 
-ruby '2.1.5'
+ruby '2.1.6'
