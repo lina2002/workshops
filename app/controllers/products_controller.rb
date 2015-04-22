@@ -5,6 +5,23 @@ class ProductsController < ApplicationController
   expose(:review) { Review.new }
   expose_decorated(:reviews, ancestor: :product)
 
+  before_action :authenticate_user!, :redirect_to_login, only: [:create, :destroy, :edit, :update]
+  before_action :credentials_check,  only: [:update, :edit, :destroy]
+
+  def redirect_to_login
+    unless user_signed_in?
+      redirect_to(new_user_session_path)
+    end
+  end
+
+  def credentials_check
+    if current_user != product.user
+      flash[:error] = 'You are not allowed to edit this product.'
+      redirect_to category_product_url(category, product)
+    end
+  end
+
+
   def index
   end
 
