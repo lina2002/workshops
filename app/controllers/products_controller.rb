@@ -36,6 +36,7 @@ class ProductsController < ApplicationController
 
   def create
     self.product = Product.new(product_params)
+    self.product.user = current_user
 
     if product.save
       category.products << product

@@ -9,10 +9,8 @@ class User < ActiveRecord::Base
 
   validates_presence_of :firstname, :lastname
 
-  attr_accessor :firstname, :lastname
-
   def admin?
-    @admin
+    self.admin
   end
 
 end
